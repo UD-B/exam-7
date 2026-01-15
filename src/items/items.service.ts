@@ -8,7 +8,6 @@ export class ItemsService {
 
     constructor(
         @InjectRepository(Items) private readonly itemsRepository: Repository<Items>,
-        private usersService: ItemsService
     ) {
     }
     async addPurchase(data: any) {

@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ItemsService } from './items.service';
+import fs from 'fs/promises'
 
 @Controller('items')
 export class ItemsController {
@@ -11,15 +12,17 @@ export class ItemsController {
         @Body('name') name: string,
         @Body('type') type: string,
         @Body('quantity') quantity: number,
-        @Body('PricePerUnit') PricePerUnit: number,
+        @Body('pricePerUnit') pricePerUnit: number,
         @Body('hasImage') hasImage: boolean,
     ) {
+        const cost = quantity * pricePerUnit
+
         return this.itemsService.addPurchase({
             id,
             name,
             type,
             quantity,
-            PricePerUnit,
+            pricePerUnit,
             hasImage
         })
     }
